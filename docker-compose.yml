@@ -1,0 +1,9 @@
+name: nginx-forward-proxy
+services:
+    nginx-forward-proxy:
+        ports:
+            - 3128:3128
+        image: nginx-forward-proxy:latest
+        volumes:
+          - ./config/nginx.conf:/usr/local/nginx/conf/nginx.conf
+        restart: always
