@@ -1,8 +1,16 @@
 # nginx-forward-proxy
 
+This is an updated version of the original from [https://github.com/hinata/nginx-forward-proxy](https://github.com/hinata/nginx-forward-proxy).
+
+Changes:
+
+- Update Alpine base version
+- Updated nginx base version
+- Split container build into a multi-stage build to reduce final size
+
 ## What is this?
 
-The 'nginx-foward-proxy' is a so simple HTTP proxy server using the nginx.
+The 'nginx-foward-proxy' is a simple HTTP proxy server using nginx.
 You can easily build a HTTP proxy server using this.
 
 ## Try this container
