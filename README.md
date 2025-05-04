@@ -8,6 +8,8 @@ Changes:
 - Updated nginx base version
 - Split container build into a multi-stage build to reduce final size
 
+![Ngninx Forward Proxy Icon](./assets/nginx_forward_proxy_icon-002.svg "Nginx Forward Proxy Icon")
+
 ## What is this?
 
 The 'nginx-foward-proxy' is a simple HTTP proxy server using nginx.  
