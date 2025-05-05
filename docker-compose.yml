@@ -3,7 +3,7 @@ services:
     nginx-forward-proxy:
         ports:
             - 3128:3128
-        image: nginx-forward-proxy:latest
+        image: ghcr.io/superjc710e/nginx-forward-proxy-ng:latest
         volumes:
           - ./config/nginx.conf:/usr/local/nginx/conf/nginx.conf
         restart: always

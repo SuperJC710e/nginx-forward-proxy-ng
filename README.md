@@ -8,7 +8,7 @@ Changes:
 - Updated nginx base version
 - Split container build into a multi-stage build to reduce final size
 
-![Ngninx Forward Proxy Icon](./assets/nginx_forward_proxy_icon-002.svg "Nginx Forward Proxy Icon")
+![Ngninx Forward Proxy Icon](./assets/nginx_forward_proxy_icon-003.svg "Nginx Forward Proxy Icon")
 
 ## What is this?
 
@@ -38,7 +38,7 @@ services:
     nginx-forward-proxy:
         ports:
             - 3128:3128
-        image: nginx-forward-proxy:latest
+        image: ghcr.io/superjc710e/nginx-forward-proxy-ng:latest
         volumes:
           - ./config/nginx.conf:/usr/local/nginx/conf/nginx.conf
         restart: always
