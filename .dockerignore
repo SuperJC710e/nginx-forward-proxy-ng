@@ -1,1 +1,6 @@
-.gitignore
+.env*
+.git
+assets
+docker-compose.yml
+LICENSE
+README.md
