@@ -47,19 +47,22 @@ FROM alpine:${ALPINE_VERSION}
 LABEL maintainer="Takahiro INOUE <github.com/hinata>"
 LABEL maintainer="Jason Clark <gihub.com/SuperJC710e>"
 
-# Install only runtime dependencies
+# Install only runtime dependencies (including gettext for envsubst)
 RUN apk update && \
     apk --no-cache add \
       pcre \
       openssl \
-      zlib
+      zlib \
+      gettext
 
 # Copy built Nginx and required files from builder stage
 COPY --from=builder /usr/sbin/nginx /usr/sbin/nginx
 COPY --from=builder /usr/local/nginx /usr/local/nginx
 
-# Add configuration
-COPY ./nginx.conf /usr/local/nginx/conf/nginx.conf
+# Add configuration template and entrypoint
+COPY ./nginx.conf.template /usr/local/nginx/conf/nginx.conf.template
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 WORKDIR /
 
@@ -67,4 +70,5 @@ EXPOSE 3128
 
 STOPSIGNAL SIGTERM
 
+ENTRYPOINT ["/entrypoint.sh"]
 CMD [ "nginx", "-g", "daemon off;" ]
