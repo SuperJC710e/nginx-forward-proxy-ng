@@ -59,7 +59,8 @@ RUN apk update && \
 COPY --from=builder /usr/sbin/nginx /usr/sbin/nginx
 COPY --from=builder /usr/local/nginx /usr/local/nginx
 
-# Add configuration template and entrypoint
+# Add default configuration, template and entrypoint
+COPY ./nginx.conf /usr/local/nginx/conf/nginx.conf
 COPY ./nginx.conf.template /usr/local/nginx/conf/nginx.conf.template
 COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

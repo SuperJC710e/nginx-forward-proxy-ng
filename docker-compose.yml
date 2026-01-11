@@ -9,6 +9,7 @@ services:
             - WORKER_PROCESSES=auto
             - WORKER_CONNECTIONS=1024
             - RESOLVER=1.1.1.1
+            - RESOLVER_IPV6=off
             - RESOLVER_TIMEOUT=5s
             - PROXY_CONNECT_TIMEOUT=60s
             - PROXY_SEND_TIMEOUT=60s
@@ -17,4 +18,9 @@ services:
             - CLIENT_BODY_TIMEOUT=60s
             - CLIENT_HEADER_TIMEOUT=60s
             - KEEPALIVE_TIMEOUT=65s
+            - FORCE_CONFIG_GENERATION=false
+        # Uncomment to use a custom nginx.conf file instead of environment variables:
+        # volumes:
+        #   - ./config/nginx.conf:/usr/local/nginx/conf/nginx.conf
+        #   - ./config/.config_mounted:/usr/local/nginx/conf/.config_mounted
         restart: always

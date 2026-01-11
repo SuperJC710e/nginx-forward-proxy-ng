@@ -19,7 +19,7 @@ http {
     access_log /dev/stdout;
     error_log  /dev/stderr;
 
-    resolver ${RESOLVER} valid=${RESOLVER_TIMEOUT};
+    resolver ${RESOLVER} ipv6=${RESOLVER_IPV6} valid=${RESOLVER_TIMEOUT};
 
     proxy_connect;
     proxy_connect_allow           443 563;
