@@ -24,8 +24,8 @@ You can easily build a HTTP proxy server using this.
 ### How to use
 
 ```shell
-$ docker run --rm -d -p 3128:3128 ghcr.io/superjc710e/nginx-forward-proxy-ng:latest
-$ curl -x http://127.0.0.1:3128 https://www.google.co.jp
+docker run --rm -d -p 3128:3128 ghcr.io/superjc710e/nginx-forward-proxy-ng:latest
+curl -x http://127.0.0.1:3128 https://www.google.co.jp
 ```
 
 ### Environment Variables
@@ -48,7 +48,7 @@ You can customize the proxy behavior using environment variables:
 Example with custom resolver:
 
 ```shell
-$ docker run --rm -d -p 3128:3128 \
+docker run --rm -d -p 3128:3128 \
   -e RESOLVER_IP=8.8.8.8 \
   -e RESOLVER_IPV6=on \
   ghcr.io/superjc710e/nginx-forward-proxy-ng:latest
@@ -57,7 +57,7 @@ $ docker run --rm -d -p 3128:3128 \
 Example with custom port:
 
 ```shell
-$ docker run --rm -d -p 8080:8080 \
+docker run --rm -d -p 8080:8080 \
   -e PROXY_PORT=8080 \
   ghcr.io/superjc710e/nginx-forward-proxy-ng:latest
 ```
@@ -96,7 +96,7 @@ services:
 
 ## See also
 
-- https://github.com/chobits/ngx_http_proxy_connect_module
+- [https://github.com/chobits/ngx_http_proxy_connect_module](https://github.com/chobits/ngx_http_proxy_connect_module)
 
 ## LICENSE
 
