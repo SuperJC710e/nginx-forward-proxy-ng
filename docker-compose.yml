@@ -4,6 +4,17 @@ services:
         ports:
             - 3128:3128
         image: ghcr.io/superjc710e/nginx-forward-proxy-ng:latest
-        volumes:
-          - ./config/nginx.conf:/usr/local/nginx/conf/nginx.conf
+        environment:
+            - PROXY_PORT=3128
+            - WORKER_PROCESSES=auto
+            - WORKER_CONNECTIONS=1024
+            - RESOLVER=1.1.1.1
+            - RESOLVER_TIMEOUT=5s
+            - PROXY_CONNECT_TIMEOUT=60s
+            - PROXY_SEND_TIMEOUT=60s
+            - PROXY_READ_TIMEOUT=60s
+            - SEND_TIMEOUT=60s
+            - CLIENT_BODY_TIMEOUT=60s
+            - CLIENT_HEADER_TIMEOUT=60s
+            - KEEPALIVE_TIMEOUT=65s
         restart: always
