@@ -12,6 +12,7 @@ services:
             - RESOLVER_IPV6=off
             - RESOLVER_TIMEOUT=5s
             - PROXY_CONNECT_TIMEOUT=60s
+            - PROXY_HTTP_VERSION=1.1
             - PROXY_SEND_TIMEOUT=60s
             - PROXY_READ_TIMEOUT=60s
             - SEND_TIMEOUT=60s
