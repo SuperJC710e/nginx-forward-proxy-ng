@@ -8,7 +8,7 @@ name: "Docker Build nginx-forward-proxy"
 on:
   workflow_dispatch:
   schedule:
-    - cron: '40 14 * * *'
+    - cron: '40 14 * * 0'
   push:
     branches: [ "main", "master" ]
     # Publish semver tags as releases.
