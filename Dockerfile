@@ -4,9 +4,9 @@
 
 # Global ARGs (available to all stages)
 ARG ALPINE_VERSION=3.24
-ARG NGINX_VERSION=1.30.4
-ARG HTTP_PROXY_CONNECT_MODULE_REPO=https://github.com/hanjeongsang/ngx_http_proxy_connect_module
-ARG HTTP_PROXY_CONNECT_MODULE_VERSION=103001
+ARG NGINX_VERSION=1.31.3
+ARG HTTP_PROXY_CONNECT_MODULE_REPO=https://github.com/yuwenlong/ngx_http_proxy_connect_module
+ARG HTTP_PROXY_CONNECT_MODULE_VERSION=103100
 
 # Stage 1: Build Environment
 FROM alpine:${ALPINE_VERSION} AS builder
@@ -33,14 +33,14 @@ RUN apk update && \
 # Download and compile Nginx with proxy connect module
 RUN curl -LSs http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz -O && \
     tar xf nginx-${NGINX_VERSION}.tar.gz && \
-    cd     nginx-${NGINX_VERSION} && \
+    cd nginx-${NGINX_VERSION} && \
     git clone ${HTTP_PROXY_CONNECT_MODULE_REPO} && \
     patch -p1 < ./ngx_http_proxy_connect_module/patch/proxy_connect_rewrite_${HTTP_PROXY_CONNECT_MODULE_VERSION}.patch && \
     ./configure \
       --add-module=./ngx_http_proxy_connect_module \
       --sbin-path=/usr/sbin/nginx \
       --prefix=/usr/local/nginx \
-      --with-cc-opt='-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fPIC' && \
+      --with-cc-opt='-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wno-error=unused-variable -Wp,-D_FORTIFY_SOURCE=2 -fPIC' && \
     make -j $(nproc) && \
     make install
 
