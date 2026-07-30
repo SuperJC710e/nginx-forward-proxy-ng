@@ -31,7 +31,7 @@ RUN curl -LSs http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz -O && \
     tar xf nginx-${NGINX_VERSION}.tar.gz && \
     cd nginx-${NGINX_VERSION} && \
     ./configure \
-      --add-module=./ngx_http_proxy_connect_module \
+      --add-module=./ngx_http_tunnel_module \
       --sbin-path=/usr/sbin/nginx \
       --prefix=/usr/local/nginx && \
     make -j $(nproc) && \
