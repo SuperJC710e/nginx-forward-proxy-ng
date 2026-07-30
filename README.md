@@ -8,11 +8,11 @@ Changes:
 - Updated nginx base version
 - Split container build into a multi-stage build to reduce final size
 
-v130 Changes
+v131native Additional Changes:
 
-- Try patch from [https://github.com/hanjeongsang/ngx_http_proxy_connect_module/blob/master/patch/proxy_connect_rewrite_103001.patch](https://github.com/hanjeongsang/ngx_http_proxy_connect_module/blob/master/patch/proxy_connect_rewrite_103001.patch)[^1]
-- Update Alpine base version (3.24)
-- Update nginx base version (1.30.x)
+- Update Alpine base version (`3.24`)
+- Update and compile nginx base version (`1.31.x`)
+- This version uses the new native `ngx_http_tunnel_module` module instead of the previous patched version. (Notes: The `ngx_http_tunnel_module` (`1.31.x`) handles `HTTP/1.1 CONNECT` requests and establishes an end-to-end virtual connection.) [^1]
 
 ![Ngninx Forward Proxy Icon](./assets/nginx_forward_proxy_icon-003.svg "Nginx Forward Proxy Icon")
 
@@ -140,4 +140,4 @@ Apache 2.0
 
 ## Footnotes
 
-[^1]: [https://github.com/chobits/ngx_http_proxy_connect_module/issues/339#issuecomment-4542058837](https://github.com/chobits/ngx_http_proxy_connect_module/issues/339#issuecomment-4542058837)
+[^1]: [https://nginx.org/en/docs/http/ngx_http_tunnel_module.html](https://nginx.org/en/docs/http/ngx_http_tunnel_module.html)
