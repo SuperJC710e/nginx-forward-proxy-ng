@@ -4,7 +4,7 @@
 
 # Global ARGs (available to all stages)
 ARG ALPINE_VERSION=3.24
-ARG NGINX_VERSION=1.30.4
+ARG NGINX_VERSION=1.31.3
 ARG HTTP_PROXY_CONNECT_MODULE_REPO=https://github.com/yuwenlong/ngx_http_proxy_connect_module
 ARG HTTP_PROXY_CONNECT_MODULE_VERSION=103101
 
