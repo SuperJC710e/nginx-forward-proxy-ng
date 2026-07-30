@@ -33,10 +33,10 @@ RUN apk update && \
 # Download and compile Nginx with proxy connect module
 RUN curl -LSs http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz -O && \
     tar xf nginx-${NGINX_VERSION}.tar.gz && \
-    cd     nginx-${NGINX_VERSION} && \
-    git clone ${HTTP_PROXY_CONNECT_MODULE_REPO} && \
-    patch -p1 < ./ngx_http_proxy_connect_module/patch/proxy_connect_rewrite_${HTTP_PROXY_CONNECT_MODULE_VERSION}.patch && \
-    ./configure \
+    cd nginx-${NGINX_VERSION}
+RUN git clone ${HTTP_PROXY_CONNECT_MODULE_REPO} && \
+    patch -p1 < ./ngx_http_proxy_connect_module/patch/proxy_connect_rewrite_${HTTP_PROXY_CONNECT_MODULE_VERSION}.patch
+RUN ./configure \
       --add-module=./ngx_http_proxy_connect_module \
       --sbin-path=/usr/sbin/nginx \
       --prefix=/usr/local/nginx \
