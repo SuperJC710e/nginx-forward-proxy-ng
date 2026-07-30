@@ -3,15 +3,18 @@
 # Dockerfile for nginx with proxy_connect module
 
 # Global ARGs (available to all stages)
-ARG ALPINE_VERSION=3.21
-ARG NGINX_VERSION=1.27.1
+ARG ALPINE_VERSION=3.24
+ARG NGINX_VERSION=1.30.4
+ARG HTTP_PROXY_CONNECT_MODULE_REPO=https://github.com/hanjeongsang/ngx_http_proxy_connect_module
+ARG HTTP_PROXY_CONNECT_MODULE_VERSION=103001
 
 # Stage 1: Build Environment
 FROM alpine:${ALPINE_VERSION} AS builder
 
 # ARGs need to be redeclared after FROM to be available in this stage
 ARG NGINX_VERSION
-
+ARG HTTP_PROXY_CONNECT_MODULE_REPO
+ARG HTTP_PROXY_CONNECT_MODULE_VERSION
 LABEL maintainer="Takahiro INOUE <github.com/hinata>"
 LABEL maintainer="Jason Clark <gihub.com/SuperJC710e>"
 
@@ -31,8 +34,8 @@ RUN apk update && \
 RUN curl -LSs http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz -O && \
     tar xf nginx-${NGINX_VERSION}.tar.gz && \
     cd     nginx-${NGINX_VERSION} && \
-    git clone https://github.com/chobits/ngx_http_proxy_connect_module && \
-    patch -p1 < ./ngx_http_proxy_connect_module/patch/proxy_connect_rewrite_102101.patch && \
+    git clone ${HTTP_PROXY_CONNECT_MODULE_REPO} && \
+    patch -p1 < ./ngx_http_proxy_connect_module/patch/proxy_connect_rewrite_${HTTP_PROXY_CONNECT_MODULE_VERSION}.patch && \
     ./configure \
       --add-module=./ngx_http_proxy_connect_module \
       --sbin-path=/usr/sbin/nginx \

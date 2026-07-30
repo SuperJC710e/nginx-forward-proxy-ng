@@ -8,6 +8,12 @@ Changes:
 - Updated nginx base version
 - Split container build into a multi-stage build to reduce final size
 
+v130 Changes
+
+- Try patch from [https://github.com/hanjeongsang/ngx_http_proxy_connect_module/blob/master/patch/proxy_connect_rewrite_103001.patch](https://github.com/hanjeongsang/ngx_http_proxy_connect_module/blob/master/patch/proxy_connect_rewrite_103001.patch)[^1]
+- Update Alpine base version (3.24)
+- Update nginx base version (1.30.x)
+
 ![Ngninx Forward Proxy Icon](./assets/nginx_forward_proxy_icon-003.svg "Nginx Forward Proxy Icon")
 
 ## What is this?
@@ -131,3 +137,7 @@ services:
 ## LICENSE
 
 Apache 2.0
+
+## Footnotes
+
+[^1]: [https://github.com/chobits/ngx_http_proxy_connect_module/issues/339#issuecomment-4542058837](https://github.com/chobits/ngx_http_proxy_connect_module/issues/339#issuecomment-4542058837)
