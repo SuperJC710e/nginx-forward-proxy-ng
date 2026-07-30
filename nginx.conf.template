@@ -19,6 +19,18 @@ http {
     access_log /dev/stdout;
     error_log  /dev/stderr;
 
+    map $request_port $allow_port {
+        443            1;
+        563            1;
+    }
+
+    # map $host $allow_host {
+    #     hostnames;
+
+    #     example.org    1;
+    #     *.example.org  1;
+    # }
+
     resolver ${RESOLVER} ipv6=${RESOLVER_IPV6} valid=${RESOLVER_TIMEOUT};
 
     if ($allow_port != 1) {
