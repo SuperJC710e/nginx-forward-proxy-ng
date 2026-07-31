@@ -13,7 +13,13 @@ http {
   client_header_timeout ${CLIENT_HEADER_TIMEOUT};
   keepalive_timeout ${KEEPALIVE_TIMEOUT};
 
+  # $request_port is empty when the request has no explicit port in the
+  # request-line authority or Host header (e.g. plain HTTP requests to the
+  # default port 80), so allow that case and explicit port 80 alongside the
+  # HTTPS CONNECT ports below.
   map $request_port $allow_port {
+      ""             1;
+      80             1;
       443            1;
       563            1;
   }
@@ -41,6 +47,17 @@ http {
     #     return 502;
     # }
 
+    # Plain HTTP (port 80) forward proxying
+    location / {
+      proxy_pass http://$host$request_uri;
+      proxy_set_header Host $host;
+      proxy_http_version ${PROXY_HTTP_VERSION};
+      proxy_connect_timeout ${PROXY_CONNECT_TIMEOUT};
+      proxy_send_timeout ${PROXY_SEND_TIMEOUT};
+      proxy_read_timeout ${PROXY_READ_TIMEOUT};
+    }
+
+    # HTTPS forward proxying (CONNECT tunnel)
     tunnel_pass;
   }
 }

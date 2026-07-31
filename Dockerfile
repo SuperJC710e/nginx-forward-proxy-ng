@@ -32,7 +32,8 @@ RUN curl -LSs http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz -O && \
     cd nginx-${NGINX_VERSION} && \
     ./configure \
       --sbin-path=/usr/sbin/nginx \
-      --prefix=/usr/local/nginx && \
+      --prefix=/usr/local/nginx \
+      --with-http_ssl_module && \
     make -j $(nproc) && \
     make install
 
